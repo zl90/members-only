@@ -24,3 +24,8 @@ exports.user_login_get = function (req, res, next) {
 exports.user_login_post = function (req, res, next) {
   res.send("Not implemented: User login POST");
 };
+
+/* Display the User logout form */
+exports.user_logout_get = function (req, res, next) {
+  res.send("Not implemented: User logout GET");
+};
