@@ -11,6 +11,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var messageRouter = require("./routes/messages");
 
 /// Mongoose connection
 const mongodb = process.env.MONGODB_URI;
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, "public")));
 /// Routes
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/message", messageRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
