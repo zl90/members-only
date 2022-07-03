@@ -4,7 +4,8 @@ head
   title
 if (user)
     h1 Welcome back, #{user.username}!
-    a(href='/users/logout') Log Out
+    form(method='post' action='/users/logout')
+        button(type="submit") Log Out 
 else
     h1 Log In
     form(action='' method='POST' class="signup-form")

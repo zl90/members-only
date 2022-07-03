@@ -7,7 +7,7 @@ const LocalStrategy = require("passport-local");
 
 /* Display the Create User form */
 exports.user_create_get = function (req, res, next) {
-  res.render("signup");
+  res.render("signup", { user: req.user });
 };
 
 /* Process the Create User form request */
@@ -97,6 +97,11 @@ exports.user_login_post = passport.authenticate("local", {
 });
 
 /* Display the User logout form */
-exports.user_logout_get = function (req, res, next) {
-  res.send("Not implemented: User logout GET");
+exports.user_logout_post = function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/users/login");
+  });
 };
