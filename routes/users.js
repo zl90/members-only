@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const userController = require("../controllers/userController");
+const passport = require("passport");
+const User = require("../models/user");
 
 router.get("/signup", userController.user_create_get);
 

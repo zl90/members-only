@@ -12,6 +12,7 @@ const mongoose = require("mongoose");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var messageRouter = require("./routes/messages");
+const User = require("./models/user");
 
 /// Mongoose connection
 const mongodb = process.env.MONGODB_URI;
@@ -41,10 +42,22 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-      return done(null, user);
+
+      // Need to use bcrypt to compare the POST request password with
+      // the hashed password stored in the db
+      bcrypt.compare(password, user.password, (error, passwordIsCorrect) => {
+        // check for bcrypt errors
+        if (error) {
+          return done(error);
+        }
+
+        if (passwordIsCorrect) {
+          // Success! Log the user in
+          return done(null, user);
+        } else {
+          return done(null, false, { message: "Incorrect Password" });
+        }
+      });
     });
   })
 );

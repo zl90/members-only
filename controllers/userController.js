@@ -2,6 +2,8 @@ const express = require("express");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
 
 /* Display the Create User form */
 exports.user_create_get = function (req, res, next) {
@@ -83,15 +85,16 @@ exports.user_detail_get = function (req, res, next) {
   res.send("Not implemented: User Detail GET");
 };
 
-/* Display the User login form */
+/* Display the login page */
 exports.user_login_get = function (req, res, next) {
-  res.send("Not implemented: User login GET");
+  res.render("login", { user: req.user });
 };
 
 /* Process the User login request */
-exports.user_login_post = function (req, res, next) {
-  res.send("Not implemented: User login POST");
-};
+exports.user_login_post = passport.authenticate("local", {
+  successRedirect: "/users/login",
+  failureRedirect: "/users/login",
+});
 
 /* Display the User logout form */
 exports.user_logout_get = function (req, res, next) {
