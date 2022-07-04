@@ -82,7 +82,7 @@ exports.user_create_post = [
 
 /* Display the User Detail page */
 exports.user_detail_get = function (req, res, next) {
-  res.send("Not implemented: User Detail GET");
+  res.render("account", { user: req.user });
 };
 
 /* Display the login page */

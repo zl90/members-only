@@ -1,0 +1,9 @@
+extends layout 
+
+block content
+    if (user)
+        h1 Account: #{user.username}
+        p User type: #{user.type}
+        p Avatar filename: #{user.avatar}
+    else 
+        h1 Not logged in
