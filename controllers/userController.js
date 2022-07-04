@@ -93,8 +93,14 @@ exports.user_login_get = function (req, res, next) {
 /* Process the User login request */
 exports.user_login_post = passport.authenticate("local", {
   successRedirect: "/users/login",
-  failureRedirect: "/users/login",
+  failureRedirect: "/users/login-failure",
 });
+
+exports.user_login_failure_get = function (req, res, next) {
+  const errors = [new Error()];
+  errors[0].msg = "Incorrect username/password";
+  res.render("login_failure", { user: req.user, errors: errors });
+};
 
 /* Display the User logout form */
 exports.user_logout_post = function (req, res, next) {
