@@ -1,0 +1,18 @@
+extends layout 
+
+block content
+    if (user)
+        if (story)
+            h1 Delete Story: #{story.title}
+            p Are you sure you delete this story?
+
+            form(method='post' action='/stories/delete/' + story._id)
+                button(type="submit") Delete  
+        else 
+            p Error: Story not found.
+    else
+        p Only registered users can delete stories.
+        a(href='/users/login') Log In 
+        a(href='/users/signup') Sign Up
+
+        

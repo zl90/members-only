@@ -11,6 +11,7 @@ block content
         p= story.content 
         p= story.created 
         p= story.author.username
+        a(href=story.deleteUrl) Delete
   else 
     each story in stories 
       div(class='story-container')

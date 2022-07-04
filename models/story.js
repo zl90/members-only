@@ -9,4 +9,8 @@ const StorySchema = new Schema({
   created: { type: String, required: true },
 });
 
+StorySchema.virtual("deleteUrl").get(function () {
+  return "/stories/delete/" + this._id;
+});
+
 module.exports = mongoose.model("Story", StorySchema);
