@@ -77,12 +77,40 @@ exports.story_delete_get = function (req, res, next) {
 
 /* Process the Delete Story form request */
 exports.story_delete_post = function (req, res, next) {
-  // delete the story from the db
-  Story.findByIdAndRemove(req.params.storyid).exec((err) => {
-    // check db/query errors
-    if (err) return next(err);
+  Story.findById(req.params.storyid)
+    .populate("author")
+    .exec((err, story) => {
+      // check db/query errors
+      if (err) return next(err);
 
-    // Story has been successfully deleted, redirect to main page
-    res.redirect("/");
-  });
+      // Check if the story exists
+      if (story === null) {
+        const error = new Error("Story not found");
+        return next(error);
+      }
+
+      // Check that the story is only being deleted by the author (or an admin)
+      if (
+        story.author.username === req.user.username ||
+        req.user.type === "admin"
+      ) {
+        // delete the story from the db
+        Story.findByIdAndRemove(req.params.storyid).exec((err) => {
+          // check db/query errors
+          if (err) return next(err);
+
+          // Story has been successfully deleted, redirect to main page
+          res.redirect("/");
+        });
+      } else {
+        // re-render the Delete story page with errors
+        const errors = [new Error()];
+        errors[0].msg = "Only the author can delete this story";
+        res.render("delete_story", {
+          user: req.user,
+          story: story,
+          errors: errors,
+        });
+      }
+    });
 };

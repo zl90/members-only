@@ -7,7 +7,13 @@ block content
             p Are you sure you delete this story?
 
             form(method='post' action='/stories/delete/' + story._id)
-                button(type="submit") Delete  
+                button(type="submit") Delete 
+            if (errors)
+                div(class='error-container')
+                    h2 Error: 
+                    ul 
+                        each error in errors 
+                            li= error.msg 
         else 
             p Error: Story not found.
     else
