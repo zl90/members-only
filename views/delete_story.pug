@@ -3,22 +3,33 @@ extends layout
 block content
     if (user)
         if (story)
-            h1 Delete Story: #{story.title}
-            p Are you sure you want to delete this story?
+            div(class='login-page-container')
+                h1 Delete Story: #{story.title}
+                p Are you sure you want to delete this story?
 
-            form(method='post' action='/stories/delete/' + story._id)
-                button(type="submit") Delete 
-            if (errors)
-                div(class='error-container')
-                    h2 Error: 
-                    ul 
-                        each error in errors 
-                            li= error.msg 
+                form(method='post' action='/stories/delete/' + story._id)
+                    button(type="submit" class='generic-button')
+                        i(class='material-icons') delete 
+                        | Delete 
+                if (errors)
+                    div(class='error-container')
+                        h2 Error: 
+                        ul 
+                            each error in errors 
+                                li= error.msg 
         else 
             p Error: Story not found.
     else
-        p Only registered users can delete stories.
-        a(href='/users/login') Log In 
-        a(href='/users/signup') Sign Up
+        div(class='login-page-container')
+            p Access denied. Please log in, or sign up.
+
+            form(method='get' action='/users/login')
+                button(type="submit" class='generic-button')
+                    i(class="material-icons blue") login 
+                    | Log In
+            form(method='get' action='/users/signup')
+                button(type="submit" class='generic-button')
+                    i(class="material-icons blue") login 
+                    | Sign Up
 
         

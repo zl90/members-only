@@ -1,24 +1,38 @@
 extends layout 
 
 block content
-    h1 Post your Story
+    
+    
     if (user)
-        form(action='/stories/create' method='POST' class="create-story-form")
-            label(for='title') Title
-            input(name='title' placeholder='Enter your Title here...' type='text' id='title' required=true )
-            label(for='content') Story
-            textarea(name="content", cols="30", rows="10" id='content' placeholder="Enter your story here..." )
-            button Post
-        if (errors)
-            div(class='error-container')
-                h2 Error: 
-                ul 
-                    each error in errors 
-                        li= error.msg
+        div(class='login-page-container')
+            h1 Post your Story
+            form(action='/stories/create' method='POST' class="signup-form")
+                div(class='form-element-container')
+                    label(for='title') Title
+                    input(name='title' placeholder='Enter your Title here...' type='text' id='title' required=true )
+                div(class='form-element-container')
+                    label(for='content') Story
+                    textarea(name="content", cols="30", rows="10" id='content' placeholder="Enter your story here..." )
+                button(type="submit" class='generic-button light')
+                        i(class="material-icons green") email 
+                        | Post
+            if (errors)
+                div(class='error-container')
+                    h2 Error: 
+                    ul 
+                        each error in errors 
+                            li= error.msg
     else 
-        p Please log in (or sign up) to post a Story.
+        div(class='login-page-container')
+            p Please log in (or sign up) to post a Story.
 
-        a(href="/users/login") Log In
-        a(href="/users/signup") Sign Up 
+            form(method='get' action='/users/login')
+                button(type="submit" class='generic-button')
+                    i(class="material-icons blue") login 
+                    | Log In
+            form(method='get' action='/users/signup')
+                button(type="submit" class='generic-button')
+                    i(class="material-icons blue") login 
+                    | Sign Up
 
         

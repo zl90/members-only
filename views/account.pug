@@ -16,7 +16,7 @@ block content
                         i(class="material-icons green") email 
                         | Create New Story
 
-            h2(class='stories-youve-written') Stories you've written:
+            h2(class='stories-youve-written') You've written #{stories.length} stories:
             ul(class='story-list')
                 each story in stories 
                     li
@@ -26,10 +26,12 @@ block content
                             div(class='story-text-container')
                                 p= story.content 
                             div(class='story-text-container')
-                                p= story.created 
+                                div(class='story-username-container')
+                                    i(class='material-icons yellow') history 
+                                    p= story.created 
                             div(class='story-text-container')
                                 div(class='story-username-container')
-                                    i(class="material-icons") person 
+                                    i(class="material-icons blue") person 
                                     p= story.author.username
                             if (user.username === story.author.username || user.type === 'admin')
                                 div(class='story-delete-container')

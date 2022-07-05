@@ -18,10 +18,12 @@ block content
               div(class='story-text-container')
                 p= story.content 
               div(class='story-text-container')
-                p= story.created 
+                div(class='story-username-container')
+                  i(class='material-icons yellow') history 
+                  p= story.created 
               div(class='story-text-container')
                 div(class='story-username-container')
-                  i(class="material-icons") person 
+                  i(class="material-icons blue") person 
                   p= story.author.username
               if (user.username === story.author.username || user.type === 'admin')
                 div(class='story-delete-container')
@@ -40,8 +42,10 @@ block content
               div(class='story-text-container')
                 p= story.content 
               div(class='story-text-container')
-                p= story.created
+                div(class='story-username-container')
+                  i(class='material-icons yellow') history 
+                  p= story.created
               div(class='story-text-container')
                 div(class='story-username-container')
-                  i(class="material-icons") person 
+                  i(class="material-icons blue") person 
                   p Anonymous
