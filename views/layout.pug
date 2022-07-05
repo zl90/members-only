@@ -3,30 +3,41 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+
   body
     header
         div(class="logo-container")
             a(href='/') Members Only
+              i(class="material-icons") loyalty
         nav
-          if (user)
-            form(method='get' action='/stories/create')
-              button(type="submit") Create Story 
-            form(method='post' action='/users/logout')
-              button(type="submit") Log Out 
-          else 
-            form(method='get' action='/users/login')
-              button(type="submit") Log In 
-            form(method='get' action='/users/signup')
-              button(type="submit") Sign Up
-    block content
+          div(class='header-links-container')
+            if (user)
+              form(method='get' action='/stories/create')
+                button(type="submit")
+                  i(class="material-icons green") email 
+                  | Create Story
+              form(method='post' action='/users/logout')
+                button(type="submit")
+                  i(class="material-icons blue") logout 
+                  | Log Out
+            else 
+              form(method='get' action='/users/login')
+                button(type="submit")
+                  i(class="material-icons blue") login 
+                  | Log In
+              form(method='get' action='/users/signup')
+                button(type="submit")
+                  i(class="material-icons blue") login 
+                  | Sign Up
+    div(class='content')
+      block content
     footer 
       if (user)
         div(class='user-link-container')
           div(class='left')
+            //- img(src= user.avatar alt='Avatar' class="avatar-small")
+            i(class="material-icons") person 
             p #{user.username}
           form(method='get' action='/users/account')
             button(type="submit") My Account  
-        
-          
-
-

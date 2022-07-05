@@ -2,9 +2,12 @@ extends layout
 
 block content
     if (user)
-        img(src=user.avatar alt='Avatar')
+        img(src=user.avatar alt='Avatar' class='avatar-large')
         h1 Account: #{user.username}
         p User type: #{user.type}
+
+        form(method='get' action='/stories/create')
+            button(type="submit") Create New Story 
 
         h2 Stories you've written:
         ul

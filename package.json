@@ -10,6 +10,7 @@
     "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@mui/icons-material": "^5.8.4",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "date-fns": "^2.28.0",

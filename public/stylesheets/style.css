@@ -1,8 +1,150 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root {
+  --content-background-color: rgb(27, 27, 27);
+  --header-background-color: rgb(15, 15, 15);
+  --footer-background-color: var(--header-background-color);
+  --main-font-color: rgb(228, 228, 228);
+  --main-font-color-hover: rgb(185, 185, 185);
+  --header-height: 54px;
 }
 
-a {
-  color: #00B7FF;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  color: var(--main-font-color);
+  background-color: var(--content-background-color);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding-top: var(--header-height);
+  flex: 1;
+  padding-bottom: var(--header-height);
+}
+
+footer {
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--footer-background-color);
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 0px;
+}
+
+.user-link-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: var(--header-height);
+}
+
+.user-link-container .left {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.user-link-container form {
+  height: 100%;
+}
+
+.user-link-container i {
+  color: rgb(61, 113, 255);
+  font-size: 1rem;
+}
+
+header {
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--header-background-color);
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  justify-content: space-between;
+  position: fixed;
+}
+
+.logo-container a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: var(--main-font-color);
+  height: var(--header-height);
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.logo-container a:hover {
+  color: var(--main-font-color-hover);
+  background-color: rgba(0, 0, 0, 0.623);
+}
+
+.header-links-container {
+  display: flex;
+  height: var(--header-height);
+}
+
+.header-links-container form button,
+.user-link-container form button {
+  height: 100%;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: var(--main-font-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.header-links-container form button i {
+  font-size: 1rem;
+}
+
+.header-links-container form button .blue {
+  color: rgb(61, 113, 255);
+}
+
+.header-links-container form button .green {
+  color: rgb(89, 214, 110);
+}
+
+.header-links-container form button:hover,
+.user-link-container form button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.349);
+  color: var(--main-font-color-hover);
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+
+.avatar-large {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+.avatar-small {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
 }
