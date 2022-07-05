@@ -1,30 +1,47 @@
 extends layout
 
 block content
-  h1 Members Only
-  p Only registered users can post stories. Sign up to join in on the fun!
+  div(class='main-page-container')
+    div(class="main-page-title-container")
+      h1 Members Only
+      p Only registered users can post stories. Sign up to join in on the fun!
 
-  if (user)
-    ul
-      each story in stories 
-        li
-          div(class='avatar-container')
-            img(src= story.author.avatar alt= "Avatar" class="avatar")
-          div(class='story-container')
-            h3= story.title 
-            p= story.content 
-            p= story.created 
-            p= story.author.username
-            if (user.username === story.author.username || user.type === 'admin')
-              a(href=story.deleteUrl) Delete
-  else 
-    ul
-      each story in stories 
-        li
-          div(class='avatar-container')
-            img(src= story.author.avatar alt= "Avatar" class="avatar")
-          div(class='story-container')
-            h2= story.title 
-            p= story.content 
-            p= story.created 
-            p Anonymous
+    if (user)
+      ul(class='story-list')
+        each story in stories 
+          li
+            div(class='avatar-container')
+              img(src= story.author.avatar alt= "Avatar" class="avatar")
+            div(class='story-container')
+              div(class='story-title-container')
+                h3= story.title 
+              div(class='story-text-container')
+                p= story.content 
+              div(class='story-text-container')
+                p= story.created 
+              div(class='story-text-container')
+                div(class='story-username-container')
+                  i(class="material-icons") person 
+                  p= story.author.username
+              if (user.username === story.author.username || user.type === 'admin')
+                div(class='story-delete-container')
+                  form(method='get' action=story.deleteUrl)
+                    button(type='submit')
+                      i(class='material-icons') delete
+    else 
+      ul(class='story-list')
+        each story in stories 
+          li
+            div(class='avatar-container')
+              img(src= story.author.avatar alt= "Avatar" class="avatar")
+            div(class='story-container')
+              div(class='story-title-container')
+                h2= story.title 
+              div(class='story-text-container')
+                p= story.content 
+              div(class='story-text-container')
+                p= story.created
+              div(class='story-text-container')
+                div(class='story-username-container')
+                  i(class="material-icons") person 
+                  p Anonymous

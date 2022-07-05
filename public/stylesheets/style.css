@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700;900&display=swap");
+
 :root {
   --content-background-color: rgb(27, 27, 27);
   --header-background-color: rgb(15, 15, 15);
@@ -19,6 +21,7 @@ body {
   width: 100%;
   color: var(--main-font-color);
   background-color: var(--content-background-color);
+  font-family: "Titillium Web", sans-serif;
 }
 
 body {
@@ -30,6 +33,9 @@ body {
   padding-top: var(--header-height);
   flex: 1;
   padding-bottom: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 footer {
@@ -120,8 +126,35 @@ header {
   color: rgb(61, 113, 255);
 }
 
-.header-links-container form button .green {
+.main-page-title-container form button {
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  gap: 4px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.301);
+  transition: 0.15s transform;
+}
+
+.stories-youve-written {
+  padding: 16px;
+}
+
+.main-page-title-container form button:hover {
+  cursor: pointer;
+  transform: scale(1.08);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.header-links-container form button .green,
+.main-page-title-container form button .green {
   color: rgb(89, 214, 110);
+}
+
+.main-page-title-container h1 .blue {
+  color: rgb(61, 113, 255);
 }
 
 .header-links-container form button:hover,
@@ -147,4 +180,116 @@ header {
   border-radius: 50%;
   height: 30px;
   width: 30px;
+}
+
+.main-page-container {
+  width: clamp(500px, 80%, 900px);
+}
+
+.main-page-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  gap: 8px;
+}
+
+ul.story-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 32px;
+  padding-bottom: 64px;
+}
+
+ul.story-list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--header-background-color);
+  padding: 16px;
+  border-radius: 10px;
+  height: 100%;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.301);
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  background-color: rgb(116, 116, 116);
+  border-radius: 50%;
+}
+
+.story-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.story-username-container {
+  display: flex;
+  align-items: center;
+}
+
+.story-username-container i {
+  font-size: 1.1rem;
+}
+
+.story-title-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 4px;
+}
+
+.story-text-container {
+  background-color: var(--content-background-color);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.story-delete-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-delete-container form button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.story-delete-container form button:hover {
+  cursor: pointer;
+  color: var(--main-font-color-hover);
+  background-color: rgba(0, 0, 0, 0.568);
+}
+
+.story-delete-container form button i {
+  color: var(--main-font-color);
+}
+
+.story-delete-container form button i:hover {
+  color: var(--main-font-color-hover);
+}
+
+.generic-button {
+  width: 250px;
+  height: 48px;
+  border: none;
+  background-color: var(--header-background-color);
+  color: var(--main-font-color);
 }

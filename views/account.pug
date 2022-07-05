@@ -2,23 +2,39 @@ extends layout
 
 block content
     if (user)
-        img(src=user.avatar alt='Avatar' class='avatar-large')
-        h1 Account: #{user.username}
-        p User type: #{user.type}
+        div(class='main-page-container')
+            div(class="main-page-title-container")
+                div(class='avatar-container')
+                    img(src=user.avatar alt='Avatar' class='avatar-large')
+                h1
+                    i(class="material-icons blue") person 
+                    | #{user.username}
+                p Permissions: #{user.type}
 
-        form(method='get' action='/stories/create')
-            button(type="submit") Create New Story 
+                form(method='get' action='/stories/create')
+                    button(type="submit" class='generic-button')
+                        i(class="material-icons green") email 
+                        | Create New Story
 
-        h2 Stories you've written:
-        ul
-            each story in stories 
-                li
-                    div(class='story-container')
-                        h3= story.title 
-                        p= story.content 
-                        p= story.created 
-                        p= story.author.username
-                        if (user.username === story.author.username || user.type === 'admin')
-                        a(href=story.deleteUrl) Delete
+            h2(class='stories-youve-written') Stories you've written:
+            ul(class='story-list')
+                each story in stories 
+                    li
+                        div(class='story-container')
+                            div(class='story-title-container')
+                                h3= story.title 
+                            div(class='story-text-container')
+                                p= story.content 
+                            div(class='story-text-container')
+                                p= story.created 
+                            div(class='story-text-container')
+                                div(class='story-username-container')
+                                    i(class="material-icons") person 
+                                    p= story.author.username
+                            if (user.username === story.author.username || user.type === 'admin')
+                                div(class='story-delete-container')
+                                    form(method='get' action=story.deleteUrl)
+                                        button(type='submit')
+                                            i(class='material-icons') delete
     else 
         p Not logged in
