@@ -195,6 +195,10 @@ ul.story-list {
   padding-bottom: 64px;
 }
 
+.admin-text {
+  color: rgb(240, 51, 51);
+}
+
 ul.story-list li {
   display: flex;
   align-items: center;
