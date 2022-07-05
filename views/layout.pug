@@ -4,4 +4,29 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    header
+        div(class="logo-container")
+            a(href='/') Members Only
+        nav
+          if (user)
+            form(method='get' action='/stories/create')
+              button(type="submit") Create Story 
+            form(method='post' action='/users/logout')
+              button(type="submit") Log Out 
+          else 
+            form(method='get' action='/users/login')
+              button(type="submit") Log In 
+            form(method='get' action='/users/signup')
+              button(type="submit") Sign Up
     block content
+    footer 
+      if (user)
+        div(class='user-link-container')
+          div(class='left')
+            p #{user.username}
+          form(method='get' action='/users/account')
+            button(type="submit") My Account  
+        
+          
+
+

@@ -2,21 +2,29 @@ extends layout
 
 block content
   h1 Members Only
-  p Only registered users can view the authors of each story!
+  p Only registered users can post stories. Sign up to join in on the fun!
 
   if (user)
-    each story in stories 
-      div(class='story-container')
-        h2= story.title 
-        p= story.content 
-        p= story.created 
-        p= story.author.username
-        if (user.username === story.author.username || user.type === 'admin')
-          a(href=story.deleteUrl) Delete
+    ul
+      each story in stories 
+        li
+          div(class='avatar-container')
+            img(src= story.author.avatar alt= "Avatar")
+          div(class='story-container')
+            h3= story.title 
+            p= story.content 
+            p= story.created 
+            p= story.author.username
+            if (user.username === story.author.username || user.type === 'admin')
+              a(href=story.deleteUrl) Delete
   else 
-    each story in stories 
-      div(class='story-container')
-        h2= story.title 
-        p= story.content 
-        p= story.created 
-        p Anonymous
+    ul
+      each story in stories 
+        li
+          div(class='avatar-container')
+            img(src= story.author.avatar alt= "Avatar")
+          div(class='story-container')
+            h2= story.title 
+            p= story.content 
+            p= story.created 
+            p Anonymous

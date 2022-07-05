@@ -1,9 +1,11 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/user");
+const Story = require("../models/story");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const story = require("../models/story");
 
 /* Display the Create User form */
 exports.user_create_get = function (req, res, next) {
@@ -82,7 +84,20 @@ exports.user_create_post = [
 
 /* Display the User Detail page */
 exports.user_detail_get = function (req, res, next) {
-  res.render("account", { user: req.user });
+  if (req.user) {
+    // If the user is logged in, find all of their stories
+    Story.find({ author: req.user })
+      .populate("author")
+      .exec((err, stories) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.render("account", { user: req.user, stories: stories });
+      });
+  } else {
+    res.render("account");
+  }
 };
 
 /* Display the login page */
