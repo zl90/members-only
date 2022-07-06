@@ -48,6 +48,7 @@ footer {
   justify-content: flex-end;
   position: fixed;
   bottom: 0px;
+  z-index: 9;
 }
 
 .user-link-container {
@@ -81,6 +82,7 @@ header {
   padding: 16px;
   justify-content: space-between;
   position: fixed;
+  z-index: 9;
 }
 
 .logo-container a {
