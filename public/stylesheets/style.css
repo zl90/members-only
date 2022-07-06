@@ -171,7 +171,7 @@ header {
 }
 
 .main-page-container {
-  width: clamp(400px, 80%, 900px);
+  width: clamp(350px, 80%, 900px);
 }
 
 .main-page-title-container {
@@ -369,4 +369,18 @@ input:focus-visible {
 
 .generic-button .green {
   color: rgb(89, 214, 110);
+}
+
+/*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*/
+/*                  MOBILE LAYOUT                  */
+/*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*^`^-*/
+
+@media only screen and (max-width: 460px) {
+  .logo-container a {
+    font-size: 0.8rem;
+  }
+
+  .logo-container a i {
+    font-size: 0.8rem;
+  }
 }
